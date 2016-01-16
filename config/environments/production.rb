@@ -1,4 +1,5 @@
 require Rails.root.join("config/smtp")
+
 Rails.application.configure do
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
   config.cache_classes = true
@@ -20,4 +21,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
 end
+
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
