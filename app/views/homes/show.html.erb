@@ -1,11 +1,10 @@
-<h1 class="logo">You should totally...</h1>
+<%= simple_form_for TelevisionShow.new do |form| %>
+  <%= form.input :title %>
+  <%= form.button :submit %>
+<% end %>
 
 <ul>
-  <li>...watch iZombie</li>
-  <li>...read The Martian</li>
-  <li>...learn Ruby</li>
+  <% TelevisionShow.all.each do |television_show| %>
+    <li><%= television_show.title %></li>
+  <% end %>
 </ul>
-
-<a class="start-now" href="<%= new_user_path %>">
-  <%= t(".start_now") %>
-</a>

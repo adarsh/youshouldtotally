@@ -20,6 +20,8 @@ en:
 
   helpers:
     submit:
+      television_show:
+        create: Totally Recommend This
       user:
         create: Sign up
 
@@ -27,6 +29,6 @@ en:
     application:
       sign_out: Sign out
 
-  homes:
-    show:
+  pages:
+    landing:
       start_now: Totally start now
