@@ -1,0 +1,9 @@
+.homes-show {
+  .start-now {
+    @include button;
+
+    &:hover {
+      color: $light-gray;
+    }
+  }
+}

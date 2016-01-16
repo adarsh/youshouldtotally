@@ -17,3 +17,16 @@ en:
 
   titles:
     application: Youshouldtotally
+
+  helpers:
+    submit:
+      user:
+        create: Sign up
+
+  layouts:
+    application:
+      sign_out: Sign out
+
+  homes:
+    show:
+      start_now: Totally start now
