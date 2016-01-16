@@ -17,27 +17,19 @@ bin/rake dev:prime
 mkdir -p .git/safe
 
 # Only if this isn't CI
-# if [ -z "$CI" ]; then
-# fi
-          
-if heroku join --app youshouldtotally-staging &> /dev/null; then
-  git remote add staging git@heroku.com:youshouldtotally-staging.git || true
-  printf 'You are a collaborator on the "youshouldtotally-staging" Heroku app
-'
-else
-  printf 'Ask for access to the "youshouldtotally-staging" Heroku app
-'
+if [ -z "$CI" ]; then
+  if heroku apps | grep -F youshouldtotally-staging &> /dev/null; then
+    git remote add staging git@heroku.com:youshouldtotally-staging.git || true
+    echo 'You are a collaborator on the "youshouldtotally-staging" Heroku app'
+  else
+    echo 'Ask for access to the "youshouldtotally-staging" Heroku app'
+  fi
+
+
+  if heroku apps | grep -F youshouldtotally-production &> /dev/null; then
+    git remote add production git@heroku.com:youshouldtotally-production.git || true
+    echo 'You are a collaborator on the "youshouldtotally-production" Heroku app'
+  else
+    echo 'Ask for access to the "youshouldtotally-production" Heroku app'
+  fi
 fi
-
-          
-if heroku join --app youshouldtotally-production &> /dev/null; then
-  git remote add production git@heroku.com:youshouldtotally-production.git || true
-  printf 'You are a collaborator on the "youshouldtotally-production" Heroku app
-'
-else
-  printf 'Ask for access to the "youshouldtotally-production" Heroku app
-'
-fi
-
-
-          git config heroku.remote staging
