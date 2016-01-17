@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :recommended_item do
+    television_show
+    user
+  end
+
   factory :television_show do
     sequence(:title) { |n| "Show #{n}" }
   end

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116222402) do
+ActiveRecord::Schema.define(version: 20160117024221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recommended_items", force: :cascade do |t|
+    t.integer  "user_id",            null: false
+    t.integer  "television_show_id", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "recommended_items", ["television_show_id"], name: "index_recommended_items_on_television_show_id", using: :btree
+  add_index "recommended_items", ["user_id", "television_show_id"], name: "index_recommended_items_on_user_id_and_television_show_id", unique: true, using: :btree
+  add_index "recommended_items", ["user_id"], name: "index_recommended_items_on_user_id", using: :btree
 
   create_table "television_shows", force: :cascade do |t|
     t.string   "title",      null: false
@@ -33,4 +44,6 @@ ActiveRecord::Schema.define(version: 20160116222402) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "recommended_items", "television_shows"
+  add_foreign_key "recommended_items", "users"
 end

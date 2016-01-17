@@ -31,6 +31,7 @@ en:
     application:
       sign_in: Sign in
       sign_out: Sign out
+      my_profile: My Profile
 
   pages:
     landing:

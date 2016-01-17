@@ -3,6 +3,7 @@ class TelevisionShowsController < ApplicationController
     television_show = TelevisionShow.new(television_show_params)
 
     television_show.save
+    current_user.recommend(television_show)
 
     redirect_to root_path
   end
