@@ -1,0 +1,20 @@
+header {
+  background-color: $light-gray;
+  float: right;
+  margin-bottom: $base-spacing;
+  padding: $small-spacing;
+  width: 100%;
+}
+
+.header__items {
+  float: right;
+  margin-right: $base-spacing;
+
+  .header__item {
+    display: inline;
+
+    &:not(:last-child):after {
+      content: "|";
+    }
+  }
+}

@@ -1,5 +1,13 @@
-<ul>
-  <% @television_shows.each do |television_show| %>
-    <li><%= television_show.title %></li>
-  <% end %>
-</ul>
+<section class="profile">
+  <%= image_tag gravatar_image_url(@user.email, size: 200), class: "avatar" %>
+</section>
+
+<section class="recommendations">
+  <h2>I think you should totally check out</h2>
+
+  <ul>
+    <% @television_shows.each do |television_show| %>
+      <li><%= television_show.title %></li>
+    <% end %>
+  </ul>
+</section>

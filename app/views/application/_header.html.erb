@@ -1,0 +1,18 @@
+<header>
+  <%= link_to title, root_path %>
+
+  <ul class="header__items">
+    <% if signed_in? %>
+      <li class="header__item">
+        <%= link_to t(".my_profile"), user_path(current_user) %>
+      </li>
+      <li class="header__item">
+        <%= link_to t(".sign_out"), session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li class="header__item">
+        <%= link_to t(".sign_in"), new_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</header>

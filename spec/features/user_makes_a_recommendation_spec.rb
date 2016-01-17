@@ -8,7 +8,7 @@ feature "A User makes a recommendation" do
 
     visit root_path
     fill_form_and_submit :television_show, title: title
-    click_on t("layouts.application.my_profile")
+    click_on t("application.header.my_profile")
 
     expect(page).to have_text(title)
   end

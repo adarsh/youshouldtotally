@@ -14,21 +14,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
+  <%= render "flashes" -%>
+
+  <%= render "header" %>
+
+
   <div id="container">
-    <%= render "flashes" -%>
-    <header>
-      <% if signed_in? %>
-        <%= link_to t(".my_profile"), user_path(current_user) %>
-        |
-        <%= link_to t(".sign_out"), session_path, method: :delete %>
-      <% else %>
-        <%= link_to t(".sign_in"), new_session_path %>
-      <% end %>
-    </header>
-    <div id="content">
-      <%= yield %>
-    </div>
-    <%= render "javascript" %>
+    <%= yield %>
   </div>
+
+  <%= render "javascript" %>
 </body>
 </html>

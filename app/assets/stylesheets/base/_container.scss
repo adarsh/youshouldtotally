@@ -1,8 +1,5 @@
 #container {
   @include outer-container;
   margin-top: 2em;
-}
-
-#content {
-  @include span-columns(8);
+  clear: both;
 }

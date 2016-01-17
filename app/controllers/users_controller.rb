@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-    @television_shows = user.television_shows
+    @user = User.find(params[:id])
+    @television_shows = @user.television_shows
   end
 
   private

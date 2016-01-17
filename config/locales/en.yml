@@ -16,7 +16,7 @@ en:
         "%B %d"
 
   titles:
-    application: Youshouldtotally
+    application: YouShouldTotally
 
   helpers:
     submit:
@@ -27,8 +27,8 @@ en:
       session:
         create: Sign in
 
-  layouts:
-    application:
+  application:
+    header:
       sign_in: Sign in
       sign_out: Sign out
       my_profile: My Profile
