@@ -4,7 +4,10 @@
 <% end %>
 
 <ul>
-  <% TelevisionShow.all.each do |television_show| %>
-    <li><%= television_show.title %></li>
+  <% @recommended_items.each do |recommended_item| %>
+    <li>
+      <%= recommended_item.television_show_title %>
+      &mdash; <%= link_to recommended_item.username, recommended_item.user %>
+    </li>
   <% end %>
 </ul>
