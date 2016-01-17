@@ -24,9 +24,12 @@ en:
         create: Totally Recommend This
       user:
         create: Sign up
+      session:
+        create: Sign in
 
   layouts:
     application:
+      sign_in: Sign in
       sign_out: Sign out
 
   pages:

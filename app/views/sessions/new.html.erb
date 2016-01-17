@@ -1,13 +1,11 @@
-<%= form_for :session, url: session_path do |form| %>
+<%= simple_form_for :session, url: session_path do |form| %>
   <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+    <%= form.input :email %>
   </div>
   <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.input :password %>
   </div>
   <div>
-    <%= form.submit "Sign in" %>
+    <%= form.button :submit, t("helpers.submit.session.create") %>
   </div>
 <% end %>

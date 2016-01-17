@@ -9,6 +9,6 @@ feature "Visitor signs up" do
       email: "ann_e_body@example.com",
       password: "password"
 
-    expect(page).to have_text t("layouts.application.sign_out")
+    expect(page).to be_signed_in
   end
 end
