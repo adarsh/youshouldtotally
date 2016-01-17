@@ -1,6 +1,8 @@
 .users-show {
   .profile {
     @include span-columns(4);
+
+    font-weight: bold;
   }
 
   .avatar {

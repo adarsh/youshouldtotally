@@ -1,5 +1,6 @@
 <section class="profile">
   <%= image_tag gravatar_image_url(@user.email, size: 200), class: "avatar" %>
+  <p><%= @user.username %></p>
 </section>
 
 <section class="recommendations">
