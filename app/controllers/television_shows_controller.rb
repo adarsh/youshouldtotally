@@ -1,9 +1,10 @@
 class TelevisionShowsController < ApplicationController
   def create
-    television_show = TelevisionShow.new(television_show_params)
+    television_show = TelevisionShow.find_or_create_by(television_show_params)
 
-    television_show.save
-    current_user.recommend(television_show)
+    unless current_user.recommend(television_show)
+      flash[:error] = t(".cannot_recommend_twice")
+    end
 
     redirect_to root_path
   end

@@ -2,8 +2,8 @@ require "rails_helper"
 
 feature "A User makes a recommendation" do
   scenario "and sees it on their profile" do
-    user = create(:user)
     title = "Breaking Bad"
+    user = create(:user)
     sign_in(user)
 
     visit root_path
@@ -11,5 +11,32 @@ feature "A User makes a recommendation" do
     click_on t("application.header.my_profile")
 
     expect(page).to have_text(title)
+  end
+
+  scenario "and cannot recommend the same show twice" do
+    title = "Breaking Bad"
+    user = create(:user)
+    sign_in(user)
+
+    visit root_path
+    2.times do
+      fill_form_and_submit :television_show, title: title
+    end
+
+    expect(page).to have_text t("television_shows.create.cannot_recommend_twice")
+  end
+
+  scenario "and can recommend a show that someone else recommended" do
+    title = "Breaking Bad"
+    television_show = create(:television_show, title: title)
+    user = create(:user)
+    user.recommend(television_show)
+    other_user = create(:user)
+    sign_in(other_user)
+
+    visit root_path
+    fill_form_and_submit :television_show, title: title
+
+    expect(page).to have_text title
   end
 end

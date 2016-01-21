@@ -29,5 +29,17 @@ RSpec.describe User do
       user.reload
       expect(user.television_shows).to eq [television_show]
     end
+
+    context "when the user already recommended it" do
+      it "returns falsy" do
+        television_show = create(:television_show)
+        user = create(:user)
+
+        user.recommend(television_show)
+        result = user.recommend(television_show)
+
+        expect(result).to be_falsy
+      end
+    end
   end
 end

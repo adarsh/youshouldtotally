@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :television_shows, through: :recommended_items
 
   def recommend(television_show)
-    television_shows << television_show
+    unless television_shows.include?(television_show)
+      television_shows << television_show
+    end
   end
 end

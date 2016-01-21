@@ -36,3 +36,7 @@ en:
   pages:
     landing:
       start_now: Totally start now
+
+  television_shows:
+    create:
+      cannot_recommend_twice: Nice rec! But you already recommended this show :/
