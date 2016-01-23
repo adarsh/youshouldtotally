@@ -3,6 +3,18 @@
   <%= form.button :submit %>
 <% end %>
 
+<% if current_user.following.empty? %>
+  <div class="no-followers">
+    <p><%= t(".not_following_anyone") %></p>
+    <ul>
+      <% current_user.users_to_follow.each do |user| %>
+        <li><%= link_to user.username, user %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h2>Recommendations</h2>
 <ul>
   <% @recommended_items.each do |recommended_item| %>
     <li>

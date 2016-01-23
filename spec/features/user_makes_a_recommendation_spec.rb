@@ -32,8 +32,8 @@ feature "A User makes a recommendation" do
     user = create(:user)
     user.recommend(television_show)
     other_user = create(:user)
-    sign_in(other_user)
 
+    sign_in(other_user)
     visit root_path
     fill_form_and_submit :television_show, title: title
 

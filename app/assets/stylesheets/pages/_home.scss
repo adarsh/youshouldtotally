@@ -6,4 +6,12 @@
       color: $light-gray;
     }
   }
+
+  .no-followers {
+    margin-bottom: $base-spacing;
+  }
+
+  h2 {
+    font-size: $base-font-size * 2;
+  }
 }

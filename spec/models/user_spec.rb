@@ -14,6 +14,18 @@ RSpec.describe User do
     end
   end
 
+  context "#users_to_follow" do
+    it "returns the first 3 users, excluding the current user" do
+      user = create(:user)
+      recommended = create_list(:user, 3)
+      _not_recommended = create(:user)
+
+      result = user.users_to_follow
+
+      expect(result).to eq recommended
+    end
+  end
+
   context "#recommend" do
     it "adds a television show to a user's recommendations" do
       television_show = create(:television_show)
@@ -78,6 +90,27 @@ RSpec.describe User do
       stranger = create(:user)
 
       expect(user).not_to be_following stranger
+    end
+  end
+
+  context "#with_following" do
+    it "returns the user and the users they are following" do
+      user = create(:user)
+      following = create(:user)
+      user.follow(following)
+
+      result = user.with_following
+
+      expect(result).to match_array [user, following]
+    end
+
+    it "does not return unfollowed users" do
+      user = create(:user)
+      not_following = create(:user)
+
+      result = user.with_following
+
+      expect(result).not_to include not_following
     end
   end
 end

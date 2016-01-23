@@ -37,6 +37,10 @@ en:
     landing:
       start_now: Totally start now
 
+  homes:
+    show:
+      not_following_anyone: "Looks like you're not following anyone. Here are some suggestions:"
+
   television_shows:
     create:
       cannot_recommend_twice: Nice rec! But you already recommended this show :/
