@@ -40,3 +40,8 @@ en:
   television_shows:
     create:
       cannot_recommend_twice: Nice rec! But you already recommended this show :/
+
+  users:
+    show:
+      follow: Follow
+      unfollow: Unfollow

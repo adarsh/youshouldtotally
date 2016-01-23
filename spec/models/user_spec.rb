@@ -42,4 +42,47 @@ RSpec.describe User do
       end
     end
   end
+
+  context "#follow" do
+    it "follows a user" do
+      follower = create(:user)
+      followed = create(:user)
+
+      follower.follow(followed)
+
+      follower.reload
+      expect(follower.following).to eq [followed]
+    end
+  end
+
+  context "#unfollow" do
+    it "unfollows a user" do
+      follower = create(:user)
+      followed = create(:user)
+
+      follower.follow(followed)
+      follower.unfollow(followed)
+
+      follower.reload
+      expect(follower.following).to be_empty
+    end
+  end
+
+  context "#following" do
+    it "returns true if a user is following that user" do
+      follower = create(:user)
+      followed = create(:user)
+
+      follower.follow(followed)
+
+      expect(follower).to be_following followed
+    end
+
+    it "returns false if a user is not following that user" do
+      user = create(:user)
+      stranger = create(:user)
+
+      expect(user).not_to be_following stranger
+    end
+  end
 end

@@ -1,6 +1,11 @@
 <section class="profile">
   <%= image_tag gravatar_image_url(@user.email, size: 200), class: "avatar" %>
   <p><%= @user.username %></p>
+  <% if current_user.following?(@user) %>
+    <%= button_to t(".unfollow"), user_relationship_path(@user), method: :delete %>
+  <% else %>
+    <%= button_to t(".follow"), user_relationship_path(@user) %>
+  <% end %>
 </section>
 
 <section class="recommendations">

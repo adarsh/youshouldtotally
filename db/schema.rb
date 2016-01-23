@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117211707) do
+ActiveRecord::Schema.define(version: 20160123045642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20160117211707) do
   add_index "recommended_items", ["television_show_id"], name: "index_recommended_items_on_television_show_id", using: :btree
   add_index "recommended_items", ["user_id", "television_show_id"], name: "index_recommended_items_on_user_id_and_television_show_id", unique: true, using: :btree
   add_index "recommended_items", ["user_id"], name: "index_recommended_items_on_user_id", using: :btree
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "television_shows", force: :cascade do |t|
     t.string   "title",      null: false
@@ -48,4 +56,6 @@ ActiveRecord::Schema.define(version: 20160117211707) do
 
   add_foreign_key "recommended_items", "television_shows"
   add_foreign_key "recommended_items", "users"
+  add_foreign_key "relationships", "users", column: "followed_id"
+  add_foreign_key "relationships", "users", column: "follower_id"
 end
