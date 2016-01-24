@@ -4,9 +4,8 @@ feature "A User makes a recommendation" do
   scenario "and sees it on their profile" do
     title = "Breaking Bad"
     user = create(:user)
-    sign_in(user)
 
-    visit root_path
+    visit root_path(as: user)
     fill_form_and_submit :television_show, title: title
     click_on t("application.header.my_profile")
 
@@ -16,9 +15,8 @@ feature "A User makes a recommendation" do
   scenario "and cannot recommend the same show twice" do
     title = "Breaking Bad"
     user = create(:user)
-    sign_in(user)
 
-    visit root_path
+    visit root_path(as: user)
     2.times do
       fill_form_and_submit :television_show, title: title
     end
@@ -33,8 +31,7 @@ feature "A User makes a recommendation" do
     user.recommend(television_show)
     other_user = create(:user)
 
-    sign_in(other_user)
-    visit root_path
+    visit root_path(as: other_user)
     fill_form_and_submit :television_show, title: title
 
     expect(page).to have_text title

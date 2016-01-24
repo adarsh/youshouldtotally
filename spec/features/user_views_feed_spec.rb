@@ -8,8 +8,7 @@ feature "A User views their feed" do
     television_show = recommended_item.television_show
     user.follow(recommending_user)
 
-    sign_in(user)
-    visit root_path
+    visit root_path(as: user)
 
     expect(page).to have_text(television_show.title)
     expect(page).to have_text(recommending_user.username)
@@ -25,8 +24,7 @@ feature "A User views their feed" do
     follower.recommend(follower_television_show)
     user.follow(followee)
 
-    sign_in(user)
-    visit root_path
+    visit root_path(as: user)
 
     expect(page).to have_text(followee_television_show.title)
     expect(page).not_to have_text(follower_television_show.title)
@@ -38,8 +36,7 @@ feature "A User views their feed" do
       suggested_users = create_list(:user, 3)
       not_suggested_user = create(:user)
 
-      sign_in(user)
-      visit root_path
+      visit root_path(as: user)
 
       expect(page).to have_text t("homes.show.not_following_anyone")
       suggested_users.each do |suggested_user|
