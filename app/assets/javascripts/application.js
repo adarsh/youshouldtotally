@@ -14,3 +14,29 @@
 //= require jquery_ujs
 //= require typeahead.bundle.min
 //= require_tree .
+
+function sync(datums) {
+  console.log('datums from `local`, `prefetch`, and `#add`');
+  console.log(datums);
+}
+
+function async(datums) {
+  console.log('datums from `remote`');
+  console.log(datums);
+}
+
+var bloodhound = new Bloodhound({
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: {
+    url: "https://api.themoviedb.org/3/search/tv?api_key=" + MOVIEDB_API_KEY + "&query={query}",
+    wildcard: "{query}",
+    transform: function(response){
+      return response.results.map(function(result){
+        return result.name;
+      });
+    }
+  }
+});
+
+bloodhound.search("brooklyn 9 9", sync, async);
