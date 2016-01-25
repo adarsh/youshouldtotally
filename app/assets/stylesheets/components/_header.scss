@@ -1,9 +1,15 @@
 header {
-  background-color: $light-gray;
+  background-color: $accent-color;
+  color: $white;
   float: right;
+  font-weight: bold;
   margin-bottom: $base-spacing;
   padding: $small-spacing;
   width: 100%;
+
+  a {
+    color: $white;
+  }
 }
 
 .header__items {
@@ -13,8 +19,8 @@ header {
   .header__item {
     display: inline;
 
-    &:not(:last-child):after {
-      content: "|";
+    &:not(:last-child) {
+      margin-right: $base-spacing;
     }
   }
 }

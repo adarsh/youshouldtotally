@@ -7,8 +7,21 @@
     }
   }
 
-  .no-followers {
+  form {
     margin-bottom: $base-spacing;
+  }
+
+  aside {
+    @include span-columns(3);
+    margin-left: $column;
+  }
+
+  main {
+    @include span-columns(8);
+
+    li {
+      margin-bottom: $base-spacing;
+    }
   }
 
   h2 {

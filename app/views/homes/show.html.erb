@@ -1,25 +1,31 @@
-<%= simple_form_for TelevisionShow.new do |form| %>
-  <%= form.input :title %>
-  <%= form.button :submit %>
-<% end %>
-
-<% if current_user.following.empty? %>
-  <div class="no-followers">
-    <p><%= t(".not_following_anyone") %></p>
-    <ul>
-      <% current_user.users_to_follow.each do |user| %>
-        <li><%= link_to user.username, user %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<h2>Recommendations</h2>
-<ul>
-  <% @recommended_items.each do |recommended_item| %>
-    <li>
-      <%= recommended_item.television_show_title %>
-      &mdash; <%= link_to recommended_item.username, recommended_item.user %>
-    </li>
+<main>
+  <h2>Recommendations</h2>
+  <%= simple_form_for TelevisionShow.new do |form| %>
+    <%= form.input :title, label: false %>
+    <%= form.button :submit %>
   <% end %>
-</ul>
+
+  <ul>
+    <% @recommended_items.each do |recommended_item| %>
+      <li>
+        <strong>
+          <%= recommended_item.television_show_title %>
+        </strong>
+        &mdash; <%= link_to recommended_item.username, recommended_item.user %>
+      </li>
+    <% end %>
+  </ul>
+</main>
+
+<aside>
+  <% if current_user.following.empty? %>
+    <div>
+      <p><%= t(".not_following_anyone") %></p>
+      <ul>
+        <% current_user.users_to_follow.each do |user| %>
+          <li><%= link_to user.username, user %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</aside>

@@ -6,7 +6,7 @@ feature "A User makes a recommendation" do
     user = create(:user)
 
     visit root_path(as: user)
-    fill_form_and_submit :television_show, title: title
+    recommend_television_show(title)
     click_on t("application.header.my_profile")
 
     expect(page).to have_text(title)
@@ -18,7 +18,7 @@ feature "A User makes a recommendation" do
 
     visit root_path(as: user)
     2.times do
-      fill_form_and_submit :television_show, title: title
+      recommend_television_show(title)
     end
 
     expect(page).to have_text t("television_shows.create.cannot_recommend_twice")
@@ -32,8 +32,13 @@ feature "A User makes a recommendation" do
     other_user = create(:user)
 
     visit root_path(as: other_user)
-    fill_form_and_submit :television_show, title: title
+    recommend_television_show(title)
 
     expect(page).to have_text title
+  end
+
+  def recommend_television_show(title)
+    fill_in :television_show_title, with: title
+    click_on submit(:television_show)
   end
 end
