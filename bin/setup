@@ -10,6 +10,10 @@ set -e
 gem install bundler --conservative
 bundle check || bundle install
 
+if ! [ -f .env ]; then
+  cp .env.sample .env
+fi
+
 # Set up database and add any development seed data
 bin/rake dev:prime
 
@@ -24,7 +28,6 @@ if [ -z "$CI" ]; then
   else
     echo 'Ask for access to the "youshouldtotally-staging" Heroku app'
   fi
-
 
   if heroku apps | grep -F youshouldtotally-production &> /dev/null; then
     git remote add production git@heroku.com:youshouldtotally-production.git || true
