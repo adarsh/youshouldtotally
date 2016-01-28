@@ -4,4 +4,8 @@ class RecommendedItem < ActiveRecord::Base
 
   delegate :title, to: :television_show, prefix: true
   delegate :username, to: :user
+
+  def self.newest_first
+    order(created_at: :desc)
+  end
 end
