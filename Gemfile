@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.0"
+ruby "2.3.1"
 
 gem "autoprefixer-rails"
 gem "bourbon", "~> 4.2.0"
@@ -25,6 +25,7 @@ gem "uglifier"
 
 group :development do
   gem "quiet_assets"
+  gem "rb-readline"
   gem "refills"
   gem "spring"
   gem "spring-commands-rspec"
